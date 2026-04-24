@@ -1,0 +1,55 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景圆形 -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#764ba2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f093fb;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="paperGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="#000000" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- 背景圆 -->
+  <circle cx="256" cy="256" r="256" fill="url(#bgGradient)"/>
+  
+  <!-- 打印机主体 -->
+  <g filter="url(#shadow)">
+    <!-- 打印机底座 -->
+    <rect x="120" y="220" width="272" height="140" rx="12" fill="#2d3748"/>
+    <!-- 打印机上盖 -->
+    <rect x="140" y="200" width="232" height="40" rx="8" fill="#4a5568"/>
+    <!-- 出纸口 -->
+    <rect x="160" y="240" width="192" height="20" rx="4" fill="#1a202c"/>
+    
+    <!-- 打印纸 -->
+    <rect x="170" y="160" width="172" height="90" rx="4" fill="url(#paperGradient)" stroke="#cbd5e0" stroke-width="2"/>
+    
+    <!-- 纸上的文字装饰 -->
+    <rect x="190" y="180" width="80" height="8" rx="2" fill="#4299e1"/>
+    <rect x="190" y="196" width="132" height="6" rx="2" fill="#a0aec0"/>
+    <rect x="190" y="210" width="100" height="6" rx="2" fill="#a0aec0"/>
+    <rect x="190" y="224" width="60" height="6" rx="2" fill="#a0aec0"/>
+  </g>
+  
+  <!-- 装饰元素: 星星/火花 -->
+  <g fill="#fbbf24">
+    <polygon points="380,120 385,135 400,135 388,144 393,159 380,149 367,159 372,144 360,135 375,135" transform="scale(0.8)"/>
+    <polygon points="140,160 145,175 160,175 148,184 153,199 140,189 127,199 132,184 120,175 135,175" transform="scale(0.6)"/>
+  </g>
+  
+  <!-- 文字: KK -->
+  <text x="256" y="370" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="4">
+    KK
+  </text>
+  
+  <!-- 文字: 快打 -->
+  <text x="256" y="410" font-family="Arial, sans-serif" font-size="28" font-weight="600" fill="#ffffff" text-anchor="middle">
+    快打
+  </text>
+</svg>

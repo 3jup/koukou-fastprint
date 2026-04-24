@@ -1,0 +1,45 @@
+{
+  "name": "koukou-fastprint",
+  "version": "1.0.0",
+  "description": "扣扣快打 - 直播弹幕扣号打单系统",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "electron:build": "vite build && electron-builder",
+    "electron:build:mac": "vite build && electron-builder --mac --x64 --arm64",
+    "electron:build:mac:x64": "vite build && electron-builder --mac --x64",
+    "electron:build:mac:arm64": "vite build && electron-builder --mac --arm64",
+    "electron:build:win": "vite build && electron-builder --win",
+    "electron:build:linux": "vite build && electron-builder --linux",
+    "clean": "rm -rf dist release node_modules",
+    "clean:build": "rm -rf dist release",
+    "preinstall": "echo '正在安装依赖...'",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@icon-park/vue-next": "^1.4.2",
+    "axios": "^1.5.0",
+    "element-plus": "^2.4.0",
+    "protobufjs": "^7.2.5",
+    "pako": "^2.1.0",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.3.4",
+    "concurrently": "^8.2.0",
+    "electron": "^25.0.0",
+    "electron-builder": "^23.6.0",
+    "vite": "^4.4.9",
+    "wait-on": "^7.0.0"
+  },
+  "author": "BlitzOrder Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

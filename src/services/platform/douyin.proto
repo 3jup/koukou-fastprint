@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+package douyin.webcast;
+
+message PushFrame {
+  uint64 seqId = 1;
+  uint32 logId = 2;
+  uint64 service = 3;
+  uint64 method = 4;
+  bytes payload = 5;
+  string appName = 6;
+  string clientVersion = 7;
+}
+
+message Response {
+  repeated Message messages = 1;
+  string ext = 2;
+}
+
+message Message {
+  string type = 1;
+  bytes data = 2;
+}
+
+// 聊天消息
+message ChatMessage {
+  MessageCommon common = 1;
+  User user = 2;
+  string content = 3;
+  repeated Image giftImage = 4;
+}
+
+// 进入直播间消息
+message MemberMessage {
+  MessageCommon common = 1;
+  User user = 2;
+  uint64 memberCount = 3;
+  repeated Image userExtra = 4;
+}
+
+// 礼物消息
+message GiftMessage {
+  MessageCommon common = 1;
+  User user = 2;
+  repeated Image giftImage = 3;
+  uint64 giftId = 4;
+  uint64 fanTicket = 5;
+  uint64 giftCount = 6;
+  string giftName = 7;
+}
+
+// 点赞消息
+message LikeMessage {
+  MessageCommon common = 1;
+  User user = 2;
+  uint64 count = 3;
+  uint64 totalCount = 4;
+}
+
+message MessageCommon {
+  string method = 1;
+  uint64 msgId = 2;
+  uint64 roomId = 3;
+  uint64 nowTime = 4;
+  uint64 sortRank = 5;
+}
+
+message User {
+  uint64 id = 1;
+  uint64 shortId = 2;
+  string nickname = 3;
+  uint32 gender = 4;
+  string signature = 5;
+  uint64 level = 6;
+  uint64 birthday = 7;
+  string telephone = 8;
+  Image avatarThumb = 9;
+  repeated Image avatarMedium = 10;
+  repeated Image avatarLarge = 11;
+  bool verified = 12;
+  uint32 experience = 13;
+  string city = 14;
+  uint64 createTime = 15;
+  uint32 status = 16;
+  uint64 modifyTime = 17;
+  uint32 secret = 18;
+  string shareQrcode = 19;
+  string qrcodeUrl = 20;
+  uint64 logId = 21;
+  repeated string qqGroups = 22;
+  repeated string weiboIds = 23;
+  repeated string weiboNicknames = 24;
+  uint64 weiboStatus = 25;
+  uint32 registerType = 26;
+  uint32 shieldNote = 27;
+  string liveId = 28;
+  uint64 highlightCount = 29;
+  repeated Image highlightIcons = 30;
+  bool hasComments = 31;
+  string shareUrl = 32;
+  repeated string qqQrcodeUrls = 33;
+  repeated string wechatQrcodeUrls = 34;
+  bool hasOrders = 35;
+  string idStr = 36;
+  bool isBlocked = 37;
+  uint64 blockedEndTime = 38;
+  bool isPhoneBinded = 39;
+  string realTimeTotalFanCount = 40;
+  repeated Image profileTabImages = 41;
+  uint64 starlingExp = 42;
+  repeated Image profileNavImages = 43;
+  uint64 linkMicStats = 44;
+  uint64 linkMicStatsModifyTime = 45;
+  repeated Image liveHighValueMan = 46;
+  repeated Image liveHighValueWoman = 47;
+  uint64 agreeCount = 48;
+  string searchImpressionSetId = 49;
+  repeated Image authIcoN = 50;
+  repeated Image verificationIcon = 51;
+  string description = 52;
+  repeated Badge badges = 53;
+  uint64 followerCount = 54;
+  uint64 followingCount = 55;
+  uint64 totalFavorited = 56;
+  uint64 awemeCount = 57;
+  uint64 videoPublishCount = 58;
+  uint64 videoPublishCountOffset = 59;
+  uint64 avatorAnchorUid = 60;
+  bool isVerified = 61;
+  string customVerify = 62;
+  uint64 location = 63;
+  uint64 lastLoginTime = 64;
+  uint64 isNewUser = 65;
+  uint64 storeId = 66;
+  repeated Image avatarDecoration = 67;
+  uint64 disableIesProfile = 68;
+  uint64 isStar = 69;
+  uint64 constellation = 70;
+  uint64 birthdayHide = 71;
+  repeated Image avatarExtra = 72;
+  uint64 isBlockByGdt = 73;
+  uint64 showGdtBlock = 74;
+  string gdtBlockReason = 75;
+  string blockInfo = 76;
+  repeated StarAtlasLabel starAtlasLabels = 77;
+  repeated Image bannerUrlList = 78;
+  repeated Image bannerUrlListV2 = 79;
+  repeated Image secUid = 80;
+  repeated Image shortIdStr = 81;
+  string uniqueId = 82;
+  uint64 userAge = 83;
+  repeated Image avatarThumbBorder = 84;
+  repeated Image avatarMediumBorder = 85;
+  repeated Image avatarLargeBorder = 86;
+  repeated Image badgeImageList = 87;
+  repeated Image certificateIcon = 88;
+}
+
+message Badge {
+  repeated Image icons = 1;
+  uint64 showType = 2;
+}
+
+message StarAtlasLabel {
+  string name = 1;
+  repeated Image icons = 2;
+}
+
+message Image {
+  repeated string urlList = 1;
+  string uri = 2;
+  uint64 height = 3;
+  uint64 width = 4;
+}
