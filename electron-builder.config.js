@@ -27,12 +27,10 @@ module.exports = {
         arch: ['x64', 'arm64']
       }
     ],
-    icon: 'build/icon.icns',
+    // icon: 'build/icon.icns',  // 暂时注释，先让构建成功
     darkModeSupport: true,
-    hardenedRuntime: true,
-    gatekeeperAssess: false,
-    entitlements: 'build/entitlements.mac.plist',
-    entitlementsInherit: 'build/entitlements.mac.plist'
+    hardenedRuntime: false,  // 暂时关闭，避免签名问题
+    gatekeeperAssess: false
   },
 
   dmg: {
