@@ -4,8 +4,7 @@ node_modules/
 # Build outputs
 dist/
 release/
-# Don't ignore entire build folder - keep build resources
-# build/
+# Don't ignore build resources folder
 build/*.dmg
 build/*.exe
 build/*.AppImage
