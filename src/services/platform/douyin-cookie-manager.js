@@ -97,4 +97,8 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     DouyinCookieManager
   }
+} else if (typeof window !== 'undefined') {
+  window.DouyinCookieManager = DouyinCookieManager
 }
+
+export { DouyinCookieManager }

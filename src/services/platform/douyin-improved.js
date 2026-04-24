@@ -402,7 +402,21 @@ class DouyinSimpleClient {
   }
 }
 
-module.exports = {
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    DouyinUtils,
+    DouyinMessageParser,
+    DouyinWebSocketClient,
+    DouyinSimpleClient
+  }
+} else if (typeof window !== 'undefined') {
+  window.DouyinUtils = DouyinUtils
+  window.DouyinMessageParser = DouyinMessageParser
+  window.DouyinWebSocketClient = DouyinWebSocketClient
+  window.DouyinSimpleClient = DouyinSimpleClient
+}
+
+export {
   DouyinUtils,
   DouyinMessageParser,
   DouyinWebSocketClient,
