@@ -80,7 +80,22 @@ function createWindow() {
     mainWindow.loadURL('http://localhost:5173')
     mainWindow.webContents.openDevTools()
   } else {
-    mainWindow.loadFile(path.join(__dirname, '../dist/index.html'))
+    // 生产环境：先尝试打开开发者工具，方便调试
+    mainWindow.webContents.openDevTools()
+    
+    // 打印调试信息
+    console.log('📁 __dirname:', __dirname)
+    console.log('📁 app.isPackaged:', app.isPackaged)
+    
+    // 尝试加载文件
+    const indexPath = path.join(__dirname, '../dist/index.html')
+    console.log('📄 尝试加载:', indexPath)
+    
+    mainWindow.loadFile(indexPath).catch(err => {
+      console.error('❌ 加载失败:', err)
+      // 失败时显示错误对话框
+      dialog.showErrorBox('加载失败', err.message)
+    })
   }
 
   mainWindow.on('closed', () => {
