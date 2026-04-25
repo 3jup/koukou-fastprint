@@ -15,6 +15,12 @@ contextBridge.exposeInMainWorld('electronAPI', {
 
   showMessageBox: (options) => ipcRenderer.invoke('show-message-box', options),
 
+  // 窗口控制方法
+  minimizeWindow: () => ipcRenderer.invoke('minimize-window'),
+  maximizeWindow: () => ipcRenderer.invoke('maximize-window'),
+  closeWindow: () => ipcRenderer.invoke('close-window'),
+  startDrag: () => ipcRenderer.invoke('start-drag'),
+
   onSystemCheckResult: (callback) => {
     ipcRenderer.on('system-check-result', (event, result) => callback(result))
   },

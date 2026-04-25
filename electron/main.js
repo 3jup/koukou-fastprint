@@ -63,6 +63,7 @@ function createWindow() {
     height: 900,
     minWidth: 1200,
     minHeight: 700,
+    frame: false, // 无边框窗口
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -88,7 +89,14 @@ function createWindow() {
     console.log('📁 app.isPackaged:', app.isPackaged)
     
     // 尝试加载文件
-    const indexPath = path.join(__dirname, '../dist/index.html')
+    let indexPath
+    if (app.isPackaged) {
+      // 打包后，dist 目录的内容被复制到根目录
+      indexPath = path.join(__dirname, '../index.html')
+    } else {
+      // 未打包时，从 dist 目录加载
+      indexPath = path.join(__dirname, '../dist/index.html')
+    }
     console.log('📄 尝试加载:', indexPath)
     
     mainWindow.loadFile(indexPath).catch(err => {
@@ -196,4 +204,33 @@ ipcMain.handle('open-external', async (event, url) => {
 ipcMain.handle('show-message-box', async (event, options) => {
   const result = await dialog.showMessageBox(mainWindow, options)
   return result
+})
+
+// 窗口控制方法
+ipcMain.handle('minimize-window', () => {
+  if (mainWindow) {
+    mainWindow.minimize()
+  }
+})
+
+ipcMain.handle('maximize-window', () => {
+  if (mainWindow) {
+    if (mainWindow.isMaximized()) {
+      mainWindow.unmaximize()
+    } else {
+      mainWindow.maximize()
+    }
+  }
+})
+
+ipcMain.handle('close-window', () => {
+  if (mainWindow) {
+    mainWindow.close()
+  }
+})
+
+ipcMain.handle('start-drag', () => {
+  if (mainWindow) {
+    mainWindow.startDragging()
+  }
 })
