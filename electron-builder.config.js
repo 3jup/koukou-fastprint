@@ -4,7 +4,7 @@ module.exports = {
   copyright: 'Copyright © 2024 扣扣快打',
 
   directories: {
-    output: 'release',
+    output: 'dist',
     buildResources: 'build'
   },
 
@@ -20,16 +20,11 @@ module.exports = {
     target: [
       {
         target: 'dmg',
-        arch: ['x64', 'arm64']
-      },
-      {
-        target: 'zip',
-        arch: ['x64', 'arm64']
+        arch: ['x64']  // 先只构建x64，简化
       }
     ],
-    // icon: 'build/icon.icns',  // 暂时注释，先让构建成功
     darkModeSupport: true,
-    hardenedRuntime: false,  // 暂时关闭，避免签名问题
+    hardenedRuntime: false,
     gatekeeperAssess: false
   },
 
