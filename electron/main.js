@@ -87,23 +87,41 @@ function createWindow() {
     // 打印调试信息
     console.log('📁 __dirname:', __dirname)
     console.log('📁 app.isPackaged:', app.isPackaged)
+    console.log('📁 app.getAppPath():', app.getAppPath())
     
-    // 尝试加载文件
-    let indexPath
-    if (app.isPackaged) {
-      // 打包后，dist 目录的内容被复制到根目录
-      indexPath = path.join(__dirname, '../index.html')
-    } else {
-      // 未打包时，从 dist 目录加载
-      indexPath = path.join(__dirname, '../dist/index.html')
+    // 尝试多个可能的路径
+    const possiblePaths = [
+      path.join(__dirname, '../index.html'),           // 打包后根目录
+      path.join(__dirname, '../../index.html'),          // 可能的嵌套结构
+      path.join(app.getAppPath(), 'index.html'),        // 应用根目录
+      path.join(app.getAppPath(), 'dist/index.html')     // dist 目录
+    ]
+    
+    let indexPath = null
+    for (const path of possiblePaths) {
+      const fs = require('fs')
+      if (fs.existsSync(path)) {
+        indexPath = path
+        console.log('✅ 找到文件:', path)
+        break
+      } else {
+        console.log('❌ 文件不存在:', path)
+      }
     }
-    console.log('📄 尝试加载:', indexPath)
     
-    mainWindow.loadFile(indexPath).catch(err => {
-      console.error('❌ 加载失败:', err)
-      // 失败时显示错误对话框
-      dialog.showErrorBox('加载失败', err.message)
-    })
+    if (indexPath) {
+      console.log('📄 最终加载:', indexPath)
+      mainWindow.loadFile(indexPath).catch(err => {
+        console.error('❌ 加载失败:', err)
+        // 失败时显示错误对话框
+        dialog.showErrorBox('加载失败', err.message)
+      })
+    } else {
+      // 所有路径都失败，显示错误
+      const errorMsg = `找不到 index.html 文件\n尝试的路径:\n${possiblePaths.join('\n')}`
+      console.error('❌ 所有路径都失败:', errorMsg)
+      dialog.showErrorBox('加载失败', errorMsg)
+    }
   }
 
   mainWindow.on('closed', () => {
