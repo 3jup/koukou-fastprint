@@ -30,11 +30,17 @@ jobs:
       run: npm run electron:build:mac
 
     - name: List build files (debug)
-      run: ls -la release/ || ls -la dist/
+      run: |
+        ls -la .
+        ls -la release/ || echo "No release directory"
+        ls -la dist/ || echo "No dist directory"
+        find . -name "*.dmg" -type f || echo "No .dmg files found"
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: mac-builds
-        path: release/*.dmg
+        path: |
+          release/*.dmg
+          dist/*.dmg
         retention-days: 30
