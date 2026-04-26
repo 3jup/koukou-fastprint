@@ -4,28 +4,26 @@ module.exports = {
   copyright: 'Copyright © 2024 扣扣快打',
 
   directories: {
-    output: 'dist',
+    output: 'release',
     buildResources: 'build'
   },
 
   files: [
-    'dist/**/*',
     'electron/**/*',
+    'vite-dist/**/*',
     'package.json',
-    '!node_modules/**/*'
+    '!node_modules/**/*',
+    '!index.html'  // 排除根目录的 index.html，避免与 dist 中的冲突
   ],
 
   mac: {
     category: 'public.app-category.productivity',
-    target: [
-      {
-        target: 'dmg',
-        arch: ['x64']  // 先只构建x64，简化
-      }
-    ],
+    target: ['dmg', 'zip'],
+    arch: ['x64'],
     darkModeSupport: true,
     hardenedRuntime: false,
-    gatekeeperAssess: false
+    gatekeeperAssess: false,
+    icon: 'build/icons/icon.icns'
   },
 
   dmg: {
@@ -55,7 +53,7 @@ module.exports = {
 
   win: {
     target: ['nsis', 'portable'],
-    icon: 'build/icon.ico'
+    icon: 'build/icons/icon.ico'
   },
 
   nsis: {

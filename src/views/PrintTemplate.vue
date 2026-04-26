@@ -20,13 +20,13 @@
           </div>
           <div class="template-actions">
             <el-button
-              type="text"
+              type="link"
               size="small"
               @click.stop="duplicateTemplate(template)"
               title="复制"
             >📄</el-button>
             <el-button
-              type="text"
+              type="link"
               size="small"
               @click.stop="deleteTemplate(template)"
               class="delete-btn"

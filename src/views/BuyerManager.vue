@@ -17,7 +17,7 @@
         </el-table-column>
         <el-table-column label="操作" width="100">
           <template #default="{ row }">
-            <el-button type="text" size="small" @click="handleRemove(row)">
+            <el-button type="link" size="small" @click="handleRemove(row)">
               移除
             </el-button>
           </template>
@@ -40,7 +40,7 @@
         </el-table-column>
         <el-table-column label="操作" width="150">
           <template #default="{ row }">
-            <el-button type="text" size="small" @click="handleAddToBlacklist(row)">
+            <el-button type="link" size="small" @click="handleAddToBlacklist(row)">
               加入黑名单
             </el-button>
           </template>

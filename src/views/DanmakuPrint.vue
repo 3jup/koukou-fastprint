@@ -194,7 +194,7 @@
           <div class="card-header">
             <span class="card-title">订单列表</span>
             <div class="card-actions">
-              <el-button type="text" size="small" @click="handleClearOrders">清空</el-button>
+              <el-button type="link" size="small" @click="handleClearOrders">清空</el-button>
             </div>
           </div>
           <div class="table-container">

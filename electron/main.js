@@ -89,12 +89,12 @@ function createWindow() {
     console.log('📁 app.isPackaged:', app.isPackaged)
     console.log('📁 app.getAppPath():', app.getAppPath())
     
-    // 尝试多个可能的路径
+    // 尝试多个可能的路径 - 优先检查 vite-dist 目录
     const possiblePaths = [
-      path.join(__dirname, '../index.html'),           // 打包后根目录
-      path.join(__dirname, '../../index.html'),          // 可能的嵌套结构
-      path.join(app.getAppPath(), 'index.html'),        // 应用根目录
-      path.join(app.getAppPath(), 'dist/index.html')     // dist 目录
+      path.join(__dirname, '../vite-dist/index.html'),   // 相对路径到 vite-dist 目录
+      path.join(app.getAppPath(), 'vite-dist/index.html'), // 应用根目录下的 vite-dist 目录
+      path.join(__dirname, '../index.html'),             // 打包后根目录
+      path.join(app.getAppPath(), 'index.html')          // 应用根目录
     ]
     
     let indexPath = null

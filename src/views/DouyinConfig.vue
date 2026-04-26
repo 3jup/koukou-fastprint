@@ -67,7 +67,10 @@
                 <li>或者通过直播间分享链接获取</li>
               </ol>
             </div>
-            <el-button type="primary" @click="testRoom">测试连接</el-button>
+            <div class="room-id-actions">
+              <el-button type="primary" @click="saveRoomIdDirectly">保存房间ID</el-button>
+              <el-button @click="testRoom">测试连接</el-button>
+            </div>
           </el-form>
         </div>
       </div>
@@ -173,6 +176,16 @@ export default {
       this.simulateMessage()
     },
 
+    saveRoomIdDirectly() {
+      if (!this.roomId) {
+        this.$message.warning('请输入房间ID')
+        return
+      }
+
+      this.saveRoomId()
+      this.$message.success('房间ID已保存')
+    },
+
     simulateMessage() {
       const users = ['小明', '小红', '张三', '李四', '王五']
       const contents = ['1', '2', '3', '要了', '已拍', 'M码', 'L码']
@@ -214,15 +227,19 @@ export default {
 
 <style scoped>
 .douyin-config {
-  min-height: 100vh;
+  height: 100%;
   background: #f5f7fa;
   padding: 24px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 .page-header {
   display: flex;
   align-items: center;
   margin-bottom: 24px;
+  flex-shrink: 0;
 }
 
 .header-left {
@@ -243,10 +260,32 @@ export default {
 }
 
 .config-content {
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 24px;
   max-width: 900px;
+  overflow-y: auto;
+  padding-right: 8px;
+  min-height: 0;
+}
+
+.config-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.config-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.config-content::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.config-content::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 
 .config-section {
@@ -333,6 +372,12 @@ export default {
   padding-left: 20px;
   color: #4e5969;
   line-height: 2;
+}
+
+.room-id-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .status-card {

@@ -29,8 +29,13 @@
 </template>
 
 <script>
+import Sidebar from './Sidebar.vue'
+
 export default {
   name: 'MainLayout',
+  components: {
+    Sidebar
+  },
   data() {
     return {
       isMaximized: false
@@ -143,7 +148,9 @@ export default {
   flex: 1;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: auto;
   background-color: #f2f3f5;
+  height: 100%;
+  min-height: 0;
 }
 </style>

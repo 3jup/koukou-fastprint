@@ -14,7 +14,7 @@ export default defineConfig({
     port: 5173
   },
   build: {
-    outDir: 'dist',
-    emptyOutDir: true
+    outDir: 'vite-dist',
+    emptyOutDir: false
   }
 })
