@@ -232,7 +232,6 @@ export default {
   padding: 24px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
 .page-header {
